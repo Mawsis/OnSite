@@ -15,16 +15,19 @@ return new class extends Migration
             $table->id();
             $table->string("name");
             $table->date("deadline");
-            $table->date("dead");
+            $table->date("end")->nullable();
             $table->date("start");
             $table->enum("status", ["pending", "completed"]);
             $table->enum("validation_type", ["file", "picture", "none"]);
             $table->enum("priority", ["high", "medium", "low"])->default("medium");
-            $table->string("location");
+            $table->string("location")->nullable();
             $table->string("color");
             $table->timestamps();
+            $table->foreignId("project_id");
+            $table->string("path")->nullable();
         });
     }
+
 
     /**
      * Reverse the migrations.
